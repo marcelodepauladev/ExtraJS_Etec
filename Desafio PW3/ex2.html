@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+    <style>
+        .erro {
+            color: red;
+        }
+        .tabuada {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <label for="numero">Digite um número de 1 a 10:</label><br>
+        <input type="text" id="numero" value="">
+        <div class="erro"></div><br>
+        <button type="button" id="enviar">Mostrar tabuada do </button>
+
+        <!-- <p>Tabuada do número:</p> !-->
+        <div id="resultado" class="tabuada"></div>
+    </form>
+
+    <script>
+        document.querySelector('#enviar').addEventListener('click', function() {
+            const botao = document.querySelector('#enviar');
+            if (!msgErro()) {
+                mostrarTabuada();
+                atualizarTextoBotao();
+            }
+        });
+
+        function obterNumero() {
+            const numero = parseFloat(document.querySelector('#numero').value);
+            return numero;
+        }
+
+        function msgErro() {
+            const erroDiv = document.querySelector('.erro');
+            const numero = obterNumero();
+            let erro = false;
+
+            if (isNaN(numero) || numero < 1 || numero > 10) {
+                erro = true;
+                erroDiv.innerHTML = "Insira um número válido entre 1 e 10!";
+            } else {
+                erroDiv.innerHTML = "";
+            }
+
+            return erro;
+        }
+
+        function mostrarTabuada() {
+            const numero = obterNumero();
+            const resultadoDiv = document.querySelector('#resultado');
+            let tabuada = '';
+
+            for (let i = 1; i <= 10; i++) {
+                tabuada += `${numero} x ${i} = ${numero * i}<br>`;
+            }
+
+            resultadoDiv.innerHTML = tabuada;
+        }
+
+        function atualizarTextoBotao() {
+            const botao = document.querySelector('#enviar');
+            const numero = obterNumero();
+            if (!isNaN(numero) && numero >= 1 && numero <= 10) {
+                botao.textContent = `Mostrar tabuada do ${numero}`;
+            }
+        }
+    </script>
+</body>
+</html>

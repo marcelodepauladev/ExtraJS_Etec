@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+    <style>
+        .erro{
+            color: red;
+        }
+
+        #resultado{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <label for="numero">Digite um número:</label><br>
+        <input type="text" id="numero" value="">
+        <div class="erro"></div><br>
+        <button type="button" id="enviar">Enviar</button>
+
+        <p>Seu número é:</p>
+        <input type="text" id="resultado" value="" readonly>
+    </form>
+
+    <script>
+        function obterNumero() {
+            const numero = parseFloat(document.querySelector('#numero').value);
+            return { numero };
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#enviar').addEventListener('click', () => {
+                if (!msgErro()) enviar();
+            });
+        });
+
+        function msgErro() {
+            const erroDiv = document.querySelector('.erro');
+            const { numero } = obterNumero();
+            let erro = false;
+
+            if (isNaN(numero) || numero === 0) {
+                erro = true;
+                erroDiv.innerHTML = "Insira um número válido!";
+            } else {
+                erroDiv.innerHTML = "";
+            }
+
+            return erro;
+        }
+
+        function enviar() {
+            const { numero } = obterNumero();
+
+            if (numero % 2 === 0) {
+                document.querySelector('#resultado').value = "Seu número é par";
+            } else {
+                document.querySelector('#resultado').value = "Seu número é ímpar";
+            }
+        }
+    </script>
+</body>
+
+</html>

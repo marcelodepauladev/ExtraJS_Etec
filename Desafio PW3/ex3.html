@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 3</title>
+</head>
+<body>
+    <label for="lista">Temos a seguinte lista:</label><br>
+    <input type="text" id="lista" value="" readonly><br><br>
+
+    <button type="button" id="somarLista">Somar lista</button><br>
+    <input type="text" id="resultadoSoma" value="" readonly><br><br>
+
+    <button type="button" id="maiorNumLista">Maior número da lista</button><br>
+    <input type="text" id="resultadoMaior" value="" readonly><br><br>
+
+    <script>
+
+        //let nome = "André Lima";
+        //let lista1 = nome.split(' ');
+
+        var lista = [3, 456, 0, 34, 140];
+        //var lista = document.getElementById('numeros').value.split(',');
+        console.log(lista)
+
+        function exibirLista() {
+            var listaString = '';
+            for (var i = 0; i < lista.length; i++) {
+                listaString += lista[i];
+                if (i < lista.length - 1) {
+                    listaString += ', ';
+                }
+            }
+            document.getElementById('lista').value = listaString;
+        }
+
+        function somarLista() {
+            var soma = 0;
+            for (var i = 0; i < lista.length; i++) {
+                soma += lista[i];
+            }
+            document.getElementById('resultadoSoma').value = soma;
+        }
+
+        function maiorNumLista() {
+            var maior = lista[0];
+            for (var i = 1; i < lista.length; i++) {
+                if (lista[i] > maior) {
+                    maior = lista[i];
+                }
+            }
+            document.getElementById('resultadoMaior').value = maior;
+        }
+
+        exibirLista();
+        document.getElementById('somarLista').addEventListener('click', somarLista);
+        document.getElementById('maiorNumLista').addEventListener('click', maiorNumLista);
+    </script>
+</body>
+</html>
